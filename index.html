@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aliafor · Dashboard Presupuesto Marketing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="brand">
+      <img src="public/aliafor-logo.png" alt="Aliafor" onerror="this.style.display='none'"/>
+      <div class="brand-text">
+        <h1>Dashboard Presupuesto Marketing</h1>
+        <p>FY 2025–2026 · Julio 2025 a Junio 2026</p>
+      </div>
+    </div>
+    <div class="actions">
+      <label class="toggle">
+        <input id="toggleMonths" type="checkbox" checked />
+        <span>Mostrar meses</span>
+      </label>
+      <button id="btnPdf">Exportar PDF</button>
+      <button id="btnExport">Exportar CSV</button>
+      <button id="btnAdd">Input Nuevo Mes</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="cards" id="cards"></section>
+
+    <section class="content-grid">
+      <div class="panel main-panel">
+        <div class="panel-header panel-header-strong">
+          <div>
+            <h2>Budget por área</h2>
+            <p>Detalle por categoría, ejecución, cumplimiento y forecast del ejercicio.</p>
+          </div>
+          <div id="cloudStatus" class="cloud-status no-print">Modo local</div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="budgetTable">
+            <thead>
+              <tr>
+                <th class="sticky-left left-area">Área</th>
+                <th class="sticky-left left-cat">Categoría</th>
+                <th class="month-col">Jul 25</th><th class="month-col">Ago 25</th><th class="month-col">Sep 25</th><th class="month-col">Oct 25</th><th class="month-col">Nov 25</th><th class="month-col">Dic 25</th>
+                <th class="month-col">Ene 26</th><th class="month-col">Feb 26</th><th class="month-col">Mar 26</th><th class="month-col">Abr 26</th><th class="month-col">May 26</th><th class="month-col">Jun 26</th>
+                <th class="right-ytd col-highlight">YTD</th>
+                <th class="right-budget col-highlight">Budget</th>
+                <th class="right-pct col-highlight">% cumpl.</th>
+                <th class="right-forecast col-highlight">Forecast*</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <p class="note">* Forecast real = gastado hasta hoy + (promedio mensual observado × meses restantes). Si YTD ≥ Budget, el forecast queda fijo en YTD y se resalta en rojo.</p>
+      </div>
+
+      <aside class="side">
+        <div class="panel">
+          <div class="panel-header"><h3>Ranking gasto YTD</h3></div>
+          <div id="rankingSpend" class="rank-list"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header"><h3>Mayor desvío proyectado</h3></div>
+          <div id="rankingDeviation" class="rank-list"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header"><h3>Forecast vs Budget</h3></div>
+          <div class="meter-block">
+            <div class="meter-row"><span>Budget anual</span><strong id="meterBudget">—</strong></div>
+            <div class="meter-base"><div class="meter-fill meter-budget" style="width:100%"></div></div>
+            <div class="meter-row"><span>Forecast anual</span><strong id="meterForecast">—</strong></div>
+            <div class="meter-base"><div id="meterForecastFill" class="meter-fill meter-forecast" style="width:0%"></div></div>
+            <div class="mini-grid" id="miniStats"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="panel">
+        <div class="panel-header"><h3>Gasto mensual</h3></div>
+        <div class="chart-wrap">
+          <svg id="monthlyChart" viewBox="0 0 760 260" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><h3>Semáforo por área</h3></div>
+        <div id="areaTraffic" class="traffic-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden no-print">
+    <div class="modal-card">
+      <h3>Input Nuevo Mes</h3>
+      <label>Mes
+        <select id="monthSelect"></select>
+      </label>
+      <label>Categoría
+        <select id="catSelect"></select>
+      </label>
+      <label>Monto (ARS)
+        <input id="amountInput" type="number" placeholder="0" min="0" step="1"/>
+      </label>
+      <label>Observación
+        <textarea id="noteInput" rows="3" placeholder="Opcional"></textarea>
+      </label>
+      <div class="modal-actions">
+        <button id="btnCancel" class="btn-secondary">Cancelar</button>
+        <button id="btnSave">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
