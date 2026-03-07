@@ -35,7 +35,17 @@ function pct(y,b){return b?(y/b)*100:0;}
 function money(n){return fmt.format(Number(n||0));}
 function trafficClass(v){if(v<50) return 'bad'; if(v<75) return 'warn'; return 'ok';}
 function trafficLabel(v){const cls=trafficClass(v);return cls==='bad'?'Rojo':cls==='warn'?'Amarillo':'Verde';}
-function trafficChip(v){const cls=trafficClass(v);return '<span class="traffic-chip '+cls+'"><span class="dot"></span>'+trafficLabel(v)+'</span>';}
+function trafficChip(v){
+
+ const cls = trafficClass(v);
+
+ return `
+ <span class="traffic-chip ${cls}">
+   <span class="dot"></span>
+   ${v.toFixed(1)} %
+ </span>
+ `;
+}
 function groups(){const g={};DATA.forEach(r=>{if(!g[r.area])g[r.area]=[];g[r.area].push(r);});return g;}
 function renderCards(){
   const budget=DATA.reduce((a,r)=>a+r.budget,0);
