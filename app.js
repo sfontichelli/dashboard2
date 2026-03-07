@@ -1,3 +1,4 @@
+const API_URL = https://script.google.com/macros/s/AKfycbwe_t0huKzW-i1ftqml6ILthOwCgXIKwwoKtyT2KVNyo9i-qjdpaTzYthq89KtYENeb/exec;
 const STORAGE_KEY="aliafor-dashboard-pro-v5";
 const fmt=new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 const MONTHS=["Jul 25","Ago 25","Sep 25","Oct 25","Nov 25","Dic 25","Ene 26","Feb 26","Mar 26","Abr 26","May 26","Jun 26"];
