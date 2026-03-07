@@ -102,3 +102,8 @@ tbody tr:hover td{background:rgba(255,255,255,.03)}
 .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
 @media (max-width: 1200px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.content-grid,.bottom-grid{grid-template-columns:1fr}}
 @media (max-width: 800px){.topbar{flex-direction:column;align-items:flex-start}.cards{grid-template-columns:1fr}.mini-grid{grid-template-columns:1fr}}
+.traffic-chip{display:inline-flex;align-items:center;gap:8px;font-weight:700}
+.traffic-chip .dot{width:10px;height:10px;border-radius:999px;display:inline-block}
+.traffic-chip.ok .dot{background:#10b981}
+.traffic-chip.warn .dot{background:#f59e0b}
+.traffic-chip.bad .dot{background:#ef4444}
