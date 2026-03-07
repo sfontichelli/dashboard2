@@ -74,7 +74,7 @@ async function loadCloudData(){
       const existing=fresh.find(x=>x.cat===cat);
       if(existing && MONTHS.includes(mes)){
         existing.area=area||existing.area;
-        existing.m[mes]=monto;
+        existing.m[mes]=(existing.m[mes] || 0) + monto;
         existing.note=obs||existing.note;
       }
     });
